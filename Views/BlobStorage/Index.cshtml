@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<CRUDBlogStorage.Models.BlobItemViewModel>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <div class="new-section">
+            @Html.ActionLink("New", "Upload", null, new { @class = "btn btn-primary" })
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>>@item.Uri</td>
+                        <td>@Html.ActionLink("Download", "Download", new { blobName = item.Uri.Split('/').Last() }, new { @class = "btn btn-success" })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { blobName = item.Uri.Split('/').Last()}, new { @class = "btn btn-danger" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
